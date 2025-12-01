@@ -449,6 +449,7 @@ main:
 - [ ] functions as parameters
 - [ ] register based arithmetic instructions
 - [ ] allow multiple files
+  - [ ] implement modules and namespaces
   - [ ] some level of label scrambling for handling namespace collisions on the assembler level
   - [ ] enforce main function on the assembler level not codegen level
   - [ ] allow only function headers to pass through for functions implemented in assembly
