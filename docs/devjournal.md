@@ -423,7 +423,12 @@ main:
 
 ## Restructuring plans
 
-wa- [ ] Split up the project into **compiler**, **assembler**, **linker**, **VM core** and **video interface**
+- [x] Split up the project into **compiler**, **assembler**, **linker**, **VM core** and **video interface**
+
+# 01-12-2025
+
+- [ ] Add READMEs describing how to use each binary
+- [ ] update grammar docs
 
 > squeeze in a couple of optimization layers in between semantic analyzer and code generation
 
@@ -443,7 +448,6 @@ wa- [ ] Split up the project into **compiler**, **assembler**, **linker**, **VM 
 - [ ] constants
 - [ ] functions as parameters
 - [ ] register based arithmetic instructions
-- [ ] README
 - [ ] allow multiple files
   - [ ] some level of label scrambling for handling namespace collisions on the assembler level
   - [ ] enforce main function on the assembler level not codegen level
