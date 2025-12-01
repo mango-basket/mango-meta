@@ -1,0 +1,57 @@
+; print char from r0 without using `PRINT` and `MVCUR`
+@define VIDEO_BASE   = 0x8000
+@define CURSOR_POS   = 0x81e0
+@define NEWLINE      = 0xA
+@define VIDEO_WIDTH  = 40
+
+@section text
+
+print:
+    ; put current cursor position on the top of the stack
+    PUSH16  =CURSOR_POS
+    LDW
+
+    ; store current cursor value in r1 for incrementing later
+    POPR    r1
+
+    ; check if r0 is newline
+    PUSHR   r0
+    PUSH16  =NEWLINE
+    CMP
+    JEQ     .newline_case
+
+    ; --- normal character case ---
+    ; calculate offset
+    PUSHR   r1
+    PUSH16  =VIDEO_BASE
+    ADD
+
+    ; write the character
+    PUSHR   r0
+    STB
+
+    ; increment cursor by 1
+    PUSH16  =CURSOR_POS
+    PUSHR   r1
+    PUSH16  1
+    ADD
+    STW
+
+    RET
+
+.newline_case:
+    ; increment cursor by VIDEO_HEIGHT
+	; cursor = (cursor / columns) + 1 * columns
+    PUSH16  =CURSOR_POS
+
+	PUSHR   r1            
+	PUSH16  =VIDEO_WIDTH
+	DIV                   
+	PUSH16  1
+	ADD                    
+	PUSH16  =VIDEO_WIDTH
+	MUL                   
+
+    STW
+
+    RET

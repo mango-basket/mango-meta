@@ -1,0 +1,54 @@
+program        = (statement line_end)*;
+
+statement      = vardef | assignment | expr | break_stmt | continue_stmt | disp_stmt;
+line_end       = ";" | "\n";
+
+disp_stmt      = "disp" expr;
+
+vardef         = "var" ident [typedef] "=" expr;
+typedef        = type;
+
+assignment     = (ident | deref) "=" expr;
+
+break_stmt     = "break" [expr];
+continue_stmt  = "continue";
+
+expr           = logic_op;
+
+logic_op       = bitwise (("&&" | "||") bitwise)*;
+
+bitwise        = equality (("&" | "|" | "^") equality)*;
+
+equality       = relational (("==" | "!=") relational)*;
+
+relational     = additive ((">" | "<" | ">=" | "<=") additive)*;
+
+additive       = multiplicative (("+" | "-") multiplicative)*;
+
+multiplicative = shift (("*" | "/" | "%") shift)*;
+
+shift          = unary (("<<" | ">>") unary)*;
+
+unary          = ("+" | "-" | "!" | "~" | "*") unar | atom;
+
+atom           = int | bool | ident | "(" expr ")" | if_expr | loop_expr;
+
+if_expr        = "if" expr "{" program "}"
+               ("else" "if" expr "{" program "}")*
+               ["else" "{" program "}"];
+
+loop_expr      = "loop" "{" program "}";
+
+type           = "int" | "bool" | "unit" | ("ref" type);
+
+ref            = "@" ref | unary;
+
+ident          = (alpha | "_") (alphanum | "_")*;
+
+int            = digit+;
+
+bool           = "true" | "false";
+
+alphanum       = digit | alpha;
+digit          = "0".."9";
+alpha          = "a".."z" | "A".."Z";
