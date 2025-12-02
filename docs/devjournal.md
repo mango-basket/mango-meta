@@ -436,9 +436,9 @@ What IRs do I already have?
 - Typed AST
 - Proto-assembly (rust enum)
 
-- [ ] constant folding (on the ast)
-  - [ ] arithmetic
-  - [ ] constant type casts
+- [x] constant folding (on the ast)
+  - [x] arithmetic
+  - [x] constant type casts
 - [ ] dead code analysis (on the ast)
 - [ ] additions by 0 (on the ast)
 - [ ] mult by 1 (on the ast)
