@@ -436,12 +436,25 @@ What IRs do I already have?
 - Typed AST
 - Proto-assembly (rust enum)
 
+# 02-12-2025
+
 - [x] constant folding (on the ast)
   - [x] arithmetic
   - [x] constant type casts
+
+# 03-12-2025
+
+- [ ] logical and airthmetic optimizations (on the ast)
+  - [ ] add/sub by 0
+  - [ ] mul/div/mod by 1
+  - [ ] and with false is false
+  - [ ] and with true is redundant
+  - [ ] or with true is true
+  - [ ] or with false is redundant
+  - [ ] xor with false is redundant
 - [ ] dead code analysis (on the ast)
-- [ ] additions by 0 (on the ast)
-- [ ] mult by 1 (on the ast)
+  - [ ] unused variables/functions; remove unused declarations
+  - [ ] expressions that never return and has an eval type, ie. unused results
 - [ ] loop invariance hoisting (on the ast)
 - [ ] jump optimizations (on the proto-assembly)
 
