@@ -427,17 +427,26 @@ main:
 
 # 01-12-2025
 
-- [ ] Add READMEs describing how to use each binary
-- [ ] update grammar docs
-
 > squeeze in a couple of optimization layers in between semantic analyzer and code generation
 
-- [ ] constant folding
-- [ ] dead code analysis
-- [ ] additions by 0
-- [ ] mult by 1
-- [ ] jump optimizations
-- [ ] loop invariance hoisting
+## Optimization
+
+What IRs do I already have?
+
+- Typed AST
+- Proto-assembly (rust enum)
+
+- [ ] constant folding (on the ast)
+  - [ ] arithmetic
+  - [ ] constant type casts
+- [ ] dead code analysis (on the ast)
+- [ ] additions by 0 (on the ast)
+- [ ] mult by 1 (on the ast)
+- [ ] loop invariance hoisting (on the ast)
+- [ ] jump optimizations (on the proto-assembly)
+
+- [ ] Add READMEs describing how to use each binary
+- [ ] update grammar docs
 
 - [ ] introduce `uint` type
 - [ ] allow only `uint`s to index
