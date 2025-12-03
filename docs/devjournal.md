@@ -446,12 +446,15 @@ What IRs do I already have?
 
 - [ ] logical and airthmetic optimizations (on the ast)
   - [ ] add/sub by 0
+  - [ ] mul/div/mod with 0
+  - [ ] div/mod by 0
   - [ ] mul/div/mod by 1
   - [ ] and with false is false
   - [ ] and with true is redundant
   - [ ] or with true is true
   - [ ] or with false is redundant
   - [ ] xor with false is redundant
+
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
   - [ ] expressions that never return and has an eval type, ie. unused results
