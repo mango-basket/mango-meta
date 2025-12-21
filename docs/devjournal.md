@@ -445,19 +445,22 @@ What IRs do I already have?
 # 03-12-2025
 
 - [ ] logical and airthmetic optimizations (on the ast)
-  - [ ] add/sub by 0
-  - [ ] mul/div/mod with 0
-  - [ ] div/mod by 0
-  - [ ] mul/div/mod by 1
-  - [ ] and with false is false
-  - [ ] and with true is redundant
-  - [ ] or with true is true
-  - [ ] or with false is redundant
-  - [ ] xor with false is redundant
+  - [x] chained pos/neg/not folding
+  - [x] add/sub by 0
+  - [x] mul/div/mod with 0
+  - [x] mul/div/mod by 1
+  - [x] and with false is false
+  - [x] or with true is true
+  - [x] and with true is redundant
+  - [x] or with false is redundant
+
+# 21-12-2025
+
+- [ ] handle not just literals, but anything that evaluates into ints/bools for optimizations
 
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
-  - [ ] expressions that never return and has an eval type, ie. unused results
+  - [ ] ifs or loops that are never entered
 - [ ] loop invariance hoisting (on the ast)
 - [ ] jump optimizations (on the proto-assembly)
 
