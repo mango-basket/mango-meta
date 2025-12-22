@@ -444,7 +444,7 @@ What IRs do I already have?
 
 # 03-12-2025
 
-- [ ] logical and airthmetic optimizations (on the ast)
+- [x] logical and airthmetic optimizations (on the ast)
   - [x] chained pos/neg/not folding
   - [x] add/sub by 0
   - [x] mul/div/mod with 0
