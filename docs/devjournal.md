@@ -457,9 +457,9 @@ What IRs do I already have?
 # 21-12-2025
 
 - [x] handle not just literals, but anything that evaluates into ints/bools for optimizations
-  - [x] bug: spans arent calculated accurately when constant folding happens
+  - [x] bug c1: spans arent calculated accurately when constant folding happens
 
-- [ ] bug: variable allocation dead assembly when there are no locals
+- [x] bug c2: variable allocation dead assembly when there are no locals
 
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
