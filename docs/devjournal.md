@@ -467,6 +467,8 @@ What IRs do I already have?
 - [ ] loop invariance hoisting (on the ast)
 - [ ] jump optimizations (on the proto-assembly)
 
+- [ ] make optimizer pass optional
+
 - [ ] Add READMEs describing how to use each binary
 - [ ] update grammar docs
 

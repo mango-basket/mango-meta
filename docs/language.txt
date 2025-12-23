@@ -1,0 +1,73 @@
+func    : ID LPAREN ((expr COMMA)* expr COMMA?)? RPAREN;
+
+atom    : INT
+		| BOOL
+		| CHAR
+		| STRING
+		| ID
+		| LPAREN expr RPAREN
+		| array
+		| func
+		| ifstmt
+		| loopstmt
+		| whilestmt;
+
+VAR     : "var";
+IF      : "if";
+ELSE    : "else";
+LOOP    : "loop";
+BREAK   : "break";
+CONT    : "continue";
+DISP    : "disp";
+FN      : "fn";
+RETURN  : "return";
+BKPT    : "breakpoint";
+WHILE   : "while";
+
+INT     : [0-9]+;
+BOOL    : "true" | "false";
+ID      : [a-zA-Z_][a-zA-Z0-9_]*;
+CHAR    : SQ [0x00-0xFF] SQ;
+STRING  : DQ [0x00-0xFF]* DQ;
+PLUS    : "+";
+MINUS   : "-";
+STAR    : "*";
+SLASH   : "/";
+MOD     : "%";
+REF     : "@";
+AND     : "&&";
+OR      : "||";
+BAND    : "&";
+BOR     : "|";
+XOR     : "^";
+BNOT    : "~";
+SHL     : "<<";
+SHR     : ">>";
+NOT     : "!";
+GT      : ">";
+LT      : "<";
+GTE     : ">=";
+LTE     : "<=";
+EQ      : "==";
+NEQ     : "!=";
+ASGN    : "=";
+COLON   : ":";
+LINEEND : ";" | "\n";
+LPAREN  : "(";
+RPAREN  : ")";
+LBRACE  : "{";
+RBRACE  : "}";
+LSQUARE : "[";
+RSQUARE : "]";
+COMMA   : ",";
+ARROW   : "->";
+PLASGN  : "+=";
+MIASGN  : "-=";
+STASGN  : "*=";
+SLASGN  : "/=";
+MOASGN  : "%=";
+BANDASGN: "&=";
+BORASGN : "|=";
+XORASGN : "^=";
+SHLASGN : "<<=";
+SHRASGN : ">>=";
