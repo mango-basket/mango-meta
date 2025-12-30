@@ -465,7 +465,7 @@ What IRs do I already have?
 
 - [x] stack balancing
   - [x] every `statement` should leave the stack pointer where it was after execution
-- [ ] bug c3: variable udpation syntax adds some redundant code
+- [x] bug c3: variable udpation syntax adds some redundant code
 
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
