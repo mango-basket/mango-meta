@@ -463,9 +463,11 @@ What IRs do I already have?
 
 # 30-12-2025
 
-- [x] stack balancing
+- [x] stack balancing - ir builder level
   - [x] every `statement` should leave the stack pointer where it was after execution
 - [x] bug c3: variable udpation syntax adds some redundant code
+
+- [ ] mid to low level IR implementation for optimizations
 
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
