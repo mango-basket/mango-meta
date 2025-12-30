@@ -461,6 +461,12 @@ What IRs do I already have?
 
 - [x] bug c2: variable allocation dead assembly when there are no locals
 
+# 30-12-2025
+
+- [x] stack balancing
+  - [x] every `statement` should leave the stack pointer where it was after execution
+- [ ] bug c3: variable udpation syntax adds some redundant code
+
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
   - [ ] ifs or loops that are never entered
@@ -488,9 +494,6 @@ What IRs do I already have?
   - [ ] allow only function headers to pass through for functions implemented in assembly
     - [ ] new syntax for letting a function pass through the undefined functions check
   - [ ] new syntax for imports
-- [ ] stack balancing
-  - [ ] assigning to `_` discards the value
-  - [ ] statements that have `eval_type != Unit` can be considered the same as `var _ = stmt;`
 
 ## Plans for the vm
 
