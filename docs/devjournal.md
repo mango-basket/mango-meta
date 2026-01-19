@@ -469,6 +469,8 @@ What IRs do I already have?
 
 - [ ] mid to low level IR implementation for optimizations
 
+- [ ] ARM-64 target support
+
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
   - [ ] ifs or loops that are never entered
