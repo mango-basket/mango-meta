@@ -13,3 +13,6 @@
 [submodule "vm"]
 	path = vm
 	url = https://github.com/mango-basket/mgvm
+[submodule "c-vm"]
+	path = c-vm
+	url = https://github.com/mango-basket/c-vm
