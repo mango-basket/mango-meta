@@ -1,0 +1,19 @@
+@define INPUT_ADDR = 0x4911
+
+@section text
+
+; gets number from memory and prints it
+.input:
+	; get number
+	PUSH16  =INPUT_ADDR
+	LDB
+	POPR    r0
+
+	; jump if nothing is being read
+	PUSHR   r0
+	PUSH16  0
+	CMP
+	JEQ     .input 
+
+	CALL    print
+	JMP     .input

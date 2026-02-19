@@ -379,7 +379,7 @@ main:
 | 0x0100 | 0x010F | 32B               | IVT - Loaded in by the BIOS                  |
 | 0x0110 | 0x090F | 2KB               | Interrupt Handlers                           |
 | 0x0910 | 0x490F | 16KB              | User code                                    |
-| 0x4910 | 0x4A0F | 256B              | MMIO - currently just                        |
+| 0x4910 | 0x4A0F | 256B              | MMIO                                         |
 | 0x4A10 | 0xFEFF | 46,320B ~ 45.23KB | Heap memory                                  |
 | 0xFF00 | 0xFFFF | 256B              | Stack Memory                                 |
 
@@ -467,7 +467,11 @@ What IRs do I already have?
   - [x] every `statement` should leave the stack pointer where it was after execution
 - [x] bug c3: variable udpation syntax adds some redundant code
 
+- [ ] memory mapped keyboard input
+  - [x] memory location updates on key press for sepecific keys
+
 - [ ] mid to low level IR implementation for optimizations
+  - [ ] reduces `while` loops to normal `loop`s
 
 - [ ] ARM-64 target support
 
