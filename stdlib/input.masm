@@ -2,7 +2,7 @@
 
 @section text
 
-; read char from keyboard and echo it to screen
+; read char from keyboard and echo it to screen via INT 0
 .input:
 	PUSH16  =INPUT_ADDR
 	LDB
@@ -13,6 +13,6 @@
 	CMP
 	JEQ     .input
 
-	; only print non-null characters
-	CALL    print
+	; r0 has the character, print it via INT 0 (runs in kernel mode)
+	INT     0
 	JMP     .input
