@@ -1,0 +1,36 @@
+@define PRINT_ADDR = 0x4910
+
+@section text
+
+main:
+    DATA    str_data
+    POPR    r0
+
+print_loop:
+    PUSHR   r0
+    LDB
+    POPR    r1
+
+    PUSHR   r1
+    PUSH16  0
+    CMP
+    JEQ     done
+
+    PUSHR   r0
+    MOV     r0 r1
+    INT     0
+    POPR    r0
+
+    PUSH16  1
+    PUSHR   r0
+    ADD
+    POPR    r0
+
+    JMP     print_loop
+
+done:
+    HALT
+
+@section data
+
+str_data = "HELLO WORLD\n"

@@ -385,23 +385,25 @@ main:
 
 ## MMIO Layout
 
-| Name        | Stop   | Size | Purpose                                      |
-| ----------- | ------ | ---- | -------------------------------------------- |
-| PRINT       | 0x4910 | 1B   | Data write to terminal, cleared after read   |
-| INPUT       | 0x4911 | 1B   | Last key pressed (sticky, for backward compat) |
+| Name        | Stop   | Size | Purpose                                                               |
+| ----------- | ------ | ---- | --------------------------------------------------------------------- |
+| PRINT       | 0x4910 | 1B   | Data write to terminal, cleared after read                            |
+| INPUT       | 0x4911 | 1B   | Last key pressed (sticky, for backward compat)                        |
 | INPUT_RD    | 0x4912 | 1B   | Read-once input buffer - pops next buffered key or returns 0 if empty |
-| DISK_SEC    | 0x4920 | 2B   | Sector address to load                       |
-| DISK_ADR    | 0x4922 | 2B   | Address to read/write to/from                |
-| DISK_CMD    | 0x4924 | 1B   | 0 = idle , 1 = read, 2 = write (unsupported) |
-| DISK_STATUS | 0x4925 | 1B   | 0 = ready, 1 = busy, 2 = error               |
+| DISK_SEC    | 0x4920 | 2B   | Sector address to load                                                |
+| DISK_ADR    | 0x4922 | 2B   | Address to read/write to/from                                         |
+| DISK_CMD    | 0x4924 | 1B   | 0 = idle , 1 = read, 2 = write (unsupported)                          |
+| DISK_STATUS | 0x4925 | 1B   | 0 = ready, 1 = busy, 2 = error                                        |
 
 ### Input Buffer
 
 The VM maintains an internal ring buffer (capacity 10). When a key is pressed:
+
 1. The key code is written to `INPUT` (0x4911) - sticky, always shows last key
 2. The key code is pushed into the internal input buffer
 
 To read input in a program:
+
 1. Read from `INPUT_RD` (0x4912) via `LDB`
 2. If the return value is 0, no input is currently available
 3. If non-zero, the value is the next buffered key and has been removed from the buffer
@@ -482,10 +484,16 @@ What IRs do I already have?
   - [x] every `statement` should leave the stack pointer where it was after execution
 - [x] bug c3: variable udpation syntax adds some redundant code
 
+# 22-07-2026
+
 - [x] memory mapped keyboard input
   - [x] memory location updates on key press for specific keys
   - [x] input ring buffer implementation (10 bytes)
   - [x] fixed input not being cleared after read
+
+- [x] Removed deprecated `stdlib/print.masm` (direct video memory writes blocked by MMIO guard in user mode)
+
+# Future
 
 - [ ] mid to low level IR implementation for optimizations
   - [ ] reduces `while` loops to normal `loop`s

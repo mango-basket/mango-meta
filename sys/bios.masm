@@ -9,6 +9,7 @@
 @define DSK_ADR = 0x4922
 @define DSK_CMD = 0x4924
 @define DSK_STS = 0x4925
+@define PRINT_ADDR = 0x4910
 
 ; load IVT into memory
 @section text
@@ -36,13 +37,18 @@ loop:
 	STW
 
 	; set read addr
- 	PUSHR   r1
+  	PUSHR   r1
 	PUSH16  =DSK_ADR
 	STW
 
 	; set cmd
 	PUSH16  1
 	PUSH16  =DSK_CMD
+	STB
+
+	; print progress dot
+	PUSH16  46
+	PUSH16  =PRINT_ADDR
 	STB
 
 	; increment the IH addr
@@ -75,6 +81,9 @@ load_user:
 	PUSH16  0
 	POPR    r0
 
+	PUSH16  0
+	POPR    r2  ; counter for printing dots
+
 load_user_loop:
 	; load the interrupt
 	PUSHR   r0
@@ -84,7 +93,7 @@ load_user_loop:
 	STW
 
 	; set read addr
- 	PUSHR   r1
+  	PUSHR   r1
 	PUSH16  =DSK_ADR
 	STW
 
@@ -105,6 +114,26 @@ load_user_loop:
 	ADD
 	POPR    r0
 
+	; print dot every 8 sectors
+	PUSHR   r2
+	PUSH16  1
+	ADD
+	POPR    r2
+
+	PUSHR   r2
+	PUSH16  8
+	CMP
+	JEQ     print_dot
+	JMP     check_done
+
+print_dot:
+	PUSH16  46
+	PUSH16  =PRINT_ADDR
+	STB
+	PUSH16  0
+	POPR    r2
+
+check_done:
 	PUSHR   r0
 	PUSH16  72
 	CMP
@@ -113,4 +142,8 @@ load_user_loop:
 	JMP     load_user_loop
 
 end:
+	; print newline
+	PUSH16  10
+	PUSH16  =PRINT_ADDR
+	STB
 	IRET

@@ -1,0 +1,81 @@
+@define PRINT_ADDR = 0x4910
+@define INPUT_RD   = 0x4912
+
+@section text
+
+main:
+    ; Print prompt
+    DATA    prompt_msg
+    POPR    r0
+    CALL    print_str
+
+    JMP     input_loop
+
+do_exit:
+    ; Print newline and halt
+    PUSH16  0xA
+    POPR    r0
+    INT     0
+    HALT
+
+input_loop:
+    ; Read key from input buffer
+    PUSH16  =INPUT_RD
+    LDB
+    POPR    r1
+
+    ; If no key (0), keep polling
+    PUSHR   r1
+    PUSH16  0
+    CMP
+    JEQ     input_loop
+
+    ; Check for Enter (0xA = newline, 0xD = carriage return)
+    PUSHR   r1
+    PUSH16  0xA
+    CMP
+    JEQ     do_exit
+
+    PUSHR   r1
+    PUSH16  0xD
+    CMP
+    JEQ     do_exit
+
+    ; Echo the character back
+    MOV     r0 r1
+    INT     0
+
+    JMP     input_loop
+
+; Print null-terminated string in r0
+print_str:
+    PUSHR   r6
+    MOV     r6 r0
+
+.print_loop:
+    PUSHR   r6
+    LDB
+    POPR    r1
+
+    PUSHR   r1
+    PUSH16  0
+    CMP
+    JEQ     .print_done
+
+    MOV     r0 r1
+    INT     0
+
+    PUSH16  1
+    PUSHR   r6
+    ADD
+    POPR    r6
+
+    JMP     .print_loop
+
+.print_done:
+    POPR    r6
+    RET
+
+@section data
+
+prompt_msg = "TYPE: "

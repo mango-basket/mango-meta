@@ -18,23 +18,33 @@ if [ -z "$1" ]; then
 fi
 
 SRC="$1"
-BASENAME=$(basename "$SRC" .mg)
+EXT="${SRC##*.}"
+BASENAME=$(basename "$SRC" ".$EXT")
 DIRNAME=$(dirname "$SRC")
 
 OUT_DIR="out"
 mkdir -p "$OUT_DIR"
 
-echo "compiling $SRC -> $OUT_DIR/$BASENAME.masm"
-cargo run --package compiler -q -- "$SRC" -o "$OUT_DIR/$BASENAME.masm" || exit 1
+if [ "$EXT" = "mg" ]; then
+    echo "compiling $SRC -> $OUT_DIR/$BASENAME.masm"
+    cargo run --package compiler -q -- "$SRC" -o "$OUT_DIR/$BASENAME.masm" || exit 1
+    MASM_FILE="$OUT_DIR/$BASENAME.masm"
+else
+    # .masm file - skip compiler
+    MASM_FILE="$SRC"
+fi
 
-echo "assembling $OUT_DIR/$BASENAME.masm -> $OUT_DIR/$BASENAME.mobj"
-cargo run --package assembler -q -- "$OUT_DIR/$BASENAME.masm" -o "$OUT_DIR/$BASENAME.mobj" || exit 1
+echo "assembling $MASM_FILE -> $OUT_DIR/$BASENAME.mobj"
+cargo run --package assembler -q -- "$MASM_FILE" -o "$OUT_DIR/$BASENAME.mobj" || exit 1
 
-echo "assembling stdlib/math.masm -> stdlib/math.mobj"
-cargo run --package assembler -q -- stdlib/math.masm -o stdlib/math.mobj || exit 1
+# ensure stdlib/math.mobj is up to date
+if [ ! -f "stdlib/math.mobj" ] || [ "stdlib/math.masm" -nt "stdlib/math.mobj" ]; then
+    echo "assembling stdlib/math.masm -> stdlib/math.mobj"
+    cargo run --package assembler -q -- "stdlib/math.masm" -o "stdlib/math.mobj" || exit 1
+fi
 
-echo "linking $OUT_DIR/$BASENAME.mobj + stdlib/math.mobj -> $OUT_DIR/$BASENAME.mbin"
-cargo run --package linker -q -- "$OUT_DIR/$BASENAME.mobj" stdlib/math.mobj -o "$OUT_DIR/$BASENAME.mbin" || exit 1
+echo "linking $OUT_DIR/$BASENAME.mobj -> $OUT_DIR/$BASENAME.mbin"
+cargo run --package linker -q -- "$OUT_DIR/$BASENAME.mobj" "stdlib/math.mobj" -o "$OUT_DIR/$BASENAME.mbin" || exit 1
 
 echo "loading $OUT_DIR/$BASENAME.mbin to sector 0x0009 of the VM"
 cargo run --package vm -q -- dw "$OUT_DIR/$BASENAME.mbin" 0x0009 || exit 1
