@@ -534,11 +534,13 @@ The new pipeline goes as follows
 
 #### Compiler
 
-- [ ] rename folder and project
-- [ ] add a `pub` keyword to the language which can be used with functions
-- [ ] add `use` keyword for importing libraries
-- [ ] imports are handled by finding the correct object files and scanning the metadata, and adding the functions to the symbol table
-- [ ] lack of `main` function is ignored when the compiler is run with the `--lib` flag. compiler also generates a `.mif` interface file along with the assembly.
+- [x] rename folder and project
+- [x] add a `export` keyword to the language which can be used to prefix function definitions, to be used in .mg files compiled with `--lib` flag, which also outputs a `.mif` file
+- [x] add `use` keyword for importing libraries
+- [x] imports are handled by finding the correct object files and scanning the metadata, and adding the functions to the symbol table
+- [x] lack of `main` function is ignored when the compiler is run with the `--lib` flag. compiler also generates a `.mif` interface file along with the assembly.
+
+# 24-07-2026
 
 #### Builder
 
@@ -552,6 +554,8 @@ The new pipeline goes as follows
 
 # Future
 
+- [ ] send all errors together instead of bubbling up
+- [ ] warnings for libs with no export, mismatched module and file names
 - [ ] a new io library in the stblib folder for print and input
   - [ ] input function for the high level mangolang
 
@@ -575,7 +579,6 @@ The new pipeline goes as follows
 
 - [ ] introduce `uint` type
 - [ ] allow only `uint`s to index
-- [ ] send all errors together instead of bubbling up
 - [ ] heap allocation!
 - [ ] vectors!
 - [ ] floats?

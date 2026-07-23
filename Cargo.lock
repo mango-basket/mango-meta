@@ -146,14 +146,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "compiler"
-version = "0.1.5"
-dependencies = [
- "clap",
- "computils 0.1.0 (git+https://github.com/mango-basket/mango-comutils)",
-]
-
-[[package]]
 name = "computils"
 version = "0.1.0"
 
@@ -430,6 +422,14 @@ dependencies = [
 [[package]]
 name = "mgas"
 version = "0.1.0"
+dependencies = [
+ "clap",
+ "computils 0.1.0 (git+https://github.com/mango-basket/mango-comutils)",
+]
+
+[[package]]
+name = "mgcc"
+version = "0.1.5"
 dependencies = [
  "clap",
  "computils 0.1.0 (git+https://github.com/mango-basket/mango-comutils)",

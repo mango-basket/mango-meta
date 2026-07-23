@@ -1,0 +1,3 @@
+module io
+
+fn print(string: [char]) -> void

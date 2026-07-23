@@ -1,0 +1,45 @@
+@section data
+@section text
+
+print:
+PUSHR fp
+MOV fp, sp
+PUSH16 65534
+PUSHR fp
+ADD
+POPR sp
+PUSH16 0
+STR [fp, 0]
+
+L0:
+LDR [fp, 6]
+LDR [fp, 0]
+PUSH16 1
+MUL
+ADD
+LDB
+PUSH16 0
+CMP
+JEQ L2
+JMP L1
+JMP L2
+
+L1:
+LDR [fp, 6]
+LDR [fp, 0]
+PUSH16 1
+MUL
+ADD
+LDB
+POPR r0
+INT 0
+LDR [fp, 0]
+PUSH16 1
+ADD
+STR [fp, 0]
+JMP L0
+
+L2:
+MOV sp, fp
+POPR fp
+RET
