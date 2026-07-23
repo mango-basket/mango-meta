@@ -492,6 +492,7 @@ What IRs do I already have?
   - [x] fixed input not being cleared after read
 
 - [x] Removed deprecated `stdlib/print.masm` (direct video memory writes blocked by MMIO guard in user mode)
+- [ ] input function for the high level mangolang
 
 # Future
 
@@ -534,7 +535,7 @@ What IRs do I already have?
 
 - Focus on flushing out all the bugs in the codegen, and then focus on vm
   - [ ] redesign the ISA, a lot of bloat instructions that can be avoided
-  - [ ] move away from purely stack based design into more register/stack design
+  - [x] move away from purely stack based design into more register/stack design
   - [ ] ideally take inspiration from or entirely emulate an alreay existing CPU of similar power
   - [ ] Seperate the VM project from the rest of the compiler
-  - [ ] Macros in the assembly? (inspiriation from the jdh video)
+  - [x] Macros in the assembly? (inspiriation from the jdh video)
