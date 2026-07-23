@@ -523,9 +523,9 @@ The new pipeline goes as follows
   - [x] set it to 0 for now
 - [x] define `.mif` format
 - [x] define metadata binary format
-- [ ] write a `.mif` parser in the assembler
-- [ ] edit the assembler to allow an optional interface file and embed the metadata into the output object file
-- [ ] add a `--dump-meta` option to the assembler which reads the metadata in a file and prints the `.mif`
+- [x] write a `.mif` parser in the assembler
+- [x] edit the assembler to allow an optional interface file and embed the metadata into the output object file
+- [x] add a `--dump-meta` option to the assembler which reads the metadata in a file and prints the `.mif`
 
 #### Linker
 

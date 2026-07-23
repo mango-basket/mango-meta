@@ -7,8 +7,8 @@
 [submodule "mgas"]
 	path = mgas
 	url = https://github.com/mango-basket/mgas
-[submodule "linker"]
-	path = linker
+[submodule "mglk"]
+	path = mglk
 	url = https://github.com/mango-basket/mglk
 [submodule "vm"]
 	path = vm

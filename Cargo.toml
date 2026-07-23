@@ -1,3 +1,3 @@
 [workspace]
-members = [ "mgas", "compiler", "computils", "linker", "vm"]
+members = [ "mgas", "compiler", "computils", "mglk", "vm"]
 resolver = "3"
