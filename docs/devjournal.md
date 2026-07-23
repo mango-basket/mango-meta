@@ -138,8 +138,6 @@
 
 # 20-09-2025
 
-- [[what-do-the-semantic-passes-handle-currently|check for notes on the type checker]]
-
 ## Plan of action
 
 - [x] renames slices to span
@@ -492,14 +490,60 @@ What IRs do I already have?
   - [x] fixed input not being cleared after read
 
 - [x] Removed deprecated `stdlib/print.masm` (direct video memory writes blocked by MMIO guard in user mode)
-- [ ] input function for the high level mangolang
+
+# 23-07-2026
+
+- [ ] support for library mg files
+  - [ ] imports like `import math` or `import io`
+  - [ ] compiler preprocessing replaces that declaration with that file, no namespaces yet, maybe in the future
+
+> I went down this rabithole of features and now here's a new
+
+## SIDE QUEST - `mgbuild`, `.mif` files, and libraries!
+
+The new pipeline goes as follows
+
+### 1. Path one
+
+- compiler compiles `.mg` library source (no `main` function, compile with the `--lib` flag) to `.masm` assembly and the **new** `.mif` interface file! `.mif` files work like c header files, storing the type signatures of whats exposed publicly in a `.mg`. these `.mif` can also be handwritten if I need to write library in `.masm` and wish to expose it to the compiler.
+- assembler takes the `.masm` and `.mif` (optionally) and makes a `.mobj` file with a **new** metadata section which stores this interfacing info in binary, which will then be reffered to by the compiler when imports are used in an `.mg` and typechecks with them, no need to compile, just jump to the metadata of the `.mobj` and see the interfaces.
+- linker then links all the given `.mobj`s, into one solid `.mbin` file that can get executed in the vm!
+
+### 2. Path two
+
+- **new** `mango` builder application looks for `main.mg` in the current working directory _or_ takes in a file, and makes a run, makes sure all the libraries imported are compiled into `.mobj`s, if not compiles them, and then follows the path one route automatically, finally spitting out a standalone binary
+
+### Steps:
+
+- [ ] udpdate `.mobj` format
+  - [ ] add `metadata_len` field, and bump up version to 3
+  - [ ] set it to 0 for now
+- [ ] define `.mif` format
+- [ ] define metadata binary format
+- [ ] write a `.mif` parser in the assembler
+- [ ] edit the assembler to allow an optional interface file and embed the metadata into the output object file
+- [ ] add a `--dump-meta` option to the assembler which reads the metadata in a file and prints the `.mif`
+- [ ] make sure linker works properly with version 3
+- [ ] compiler
+  - [ ] add a `pub` keyword to the language which can be used with functions
+  - [ ] add `use` keyword for importing libraries
+  - [ ] imports are handled by finding the correct object files and scanning the metadata, and adding the functions to the symbol table
+  - [ ] lack of `main` function is ignored when the compiler is run with the `--lib` flag. compiler also generates a `.mif` interface file along with the assembly.
+- [ ] `mgbuild` utility that unifies everything into an easy pipeline and makes sure the imports are also compiled
+  - [ ] environment variables can be used to set paths for the compiler and builder to check for libraries
+  - [ ] if source file is newer than the object file, recompile
 
 # Future
+
+- [ ] a new io library in the stblib folder for print and input
+  - [ ] input function for the high level mangolang
 
 - [ ] mid to low level IR implementation for optimizations
   - [ ] reduces `while` loops to normal `loop`s
 
 - [ ] ARM-64 target support
+
+## Control flow graphs!
 
 - [ ] dead code analysis (on the ast)
   - [ ] unused variables/functions; remove unused declarations
@@ -534,7 +578,7 @@ What IRs do I already have?
 > Not touching this anytime soon. VM is simple enough now, might get rid of a few instructions but let it stay a stack machine
 
 - Focus on flushing out all the bugs in the codegen, and then focus on vm
-  - [ ] redesign the ISA, a lot of bloat instructions that can be avoided
+  - [/] redesign the ISA, a lot of bloat instructions that can be avoided
   - [x] move away from purely stack based design into more register/stack design
   - [ ] ideally take inspiration from or entirely emulate an alreay existing CPU of similar power
   - [ ] Seperate the VM project from the rest of the compiler
