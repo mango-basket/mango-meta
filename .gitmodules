@@ -10,8 +10,8 @@
 [submodule "mglk"]
 	path = mglk
 	url = https://github.com/mango-basket/mglk
-[submodule "vm"]
-	path = vm
+[submodule "mgvm"]
+	path = mgvm
 	url = https://github.com/mango-basket/mgvm
 [submodule "c-vm"]
 	path = c-vm
