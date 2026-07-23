@@ -1,8 +1,8 @@
 [submodule "computils"]
 	path = computils
 	url = https://github.com/mango-basket/mango-comutils
-[submodule "compiler"]
-	path = compiler
+[submodule "mgcc"]
+	path = mgcc
 	url = https://github.com/mango-basket/mgcc
 [submodule "mgas"]
 	path = mgas

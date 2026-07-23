@@ -386,14 +386,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2874a2af47a2325c2001a6e6fad9b16a53b802102b528163885171cf92b15976"
 
 [[package]]
-name = "linker"
-version = "0.1.0"
-dependencies = [
- "clap",
- "computils 0.1.0 (git+https://github.com/mango-basket/mango-comutils)",
-]
-
-[[package]]
 name = "linux-raw-sys"
 version = "0.4.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -437,6 +429,14 @@ dependencies = [
 
 [[package]]
 name = "mgas"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "computils 0.1.0 (git+https://github.com/mango-basket/mango-comutils)",
+]
+
+[[package]]
+name = "mglk"
 version = "0.1.0"
 dependencies = [
  "clap",

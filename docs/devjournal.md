@@ -529,8 +529,8 @@ The new pipeline goes as follows
 
 #### Linker
 
-- [ ] rename folder and project
-- [ ] make sure linker works properly with version 3
+- [x] rename folder and project
+- [x] make sure linker works properly with version 3
 
 #### Compiler
 
