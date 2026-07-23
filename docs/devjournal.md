@@ -522,7 +522,7 @@ The new pipeline goes as follows
   - [x] add `metadata_len` field, and bump up version to 3
   - [x] set it to 0 for now
 - [x] define `.mif` format
-- [ ] define metadata binary format
+- [x] define metadata binary format
 - [ ] write a `.mif` parser in the assembler
 - [ ] edit the assembler to allow an optional interface file and embed the metadata into the output object file
 - [ ] add a `--dump-meta` option to the assembler which reads the metadata in a file and prints the `.mif`
