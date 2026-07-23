@@ -517,10 +517,11 @@ The new pipeline goes as follows
 
 #### Assembler
 
-- [ ] udpdate `.mobj` format
-  - [ ] add `metadata_len` field, and bump up version to 3
-  - [ ] set it to 0 for now
-- [ ] define `.mif` format
+- [x] rename folder and project
+- [x] udpdate `.mobj` format
+  - [x] add `metadata_len` field, and bump up version to 3
+  - [x] set it to 0 for now
+- [x] define `.mif` format
 - [ ] define metadata binary format
 - [ ] write a `.mif` parser in the assembler
 - [ ] edit the assembler to allow an optional interface file and embed the metadata into the output object file
@@ -528,10 +529,12 @@ The new pipeline goes as follows
 
 #### Linker
 
+- [ ] rename folder and project
 - [ ] make sure linker works properly with version 3
 
 #### Compiler
 
+- [ ] rename folder and project
 - [ ] add a `pub` keyword to the language which can be used with functions
 - [ ] add `use` keyword for importing libraries
 - [ ] imports are handled by finding the correct object files and scanning the metadata, and adding the functions to the symbol table
@@ -542,6 +545,10 @@ The new pipeline goes as follows
 - [ ] `mgbuild` utility that unifies everything into an easy pipeline and makes sure the imports are also compiled
   - [ ] environment variables can be used to set paths for the compiler and builder to check for libraries
   - [ ] if source file is newer than the object file, recompile
+
+#### VM
+
+- [ ] rename folder and project
 
 # Future
 
