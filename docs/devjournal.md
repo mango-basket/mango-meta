@@ -515,6 +515,8 @@ The new pipeline goes as follows
 
 ### Steps:
 
+#### Assembler
+
 - [ ] udpdate `.mobj` format
   - [ ] add `metadata_len` field, and bump up version to 3
   - [ ] set it to 0 for now
@@ -523,12 +525,20 @@ The new pipeline goes as follows
 - [ ] write a `.mif` parser in the assembler
 - [ ] edit the assembler to allow an optional interface file and embed the metadata into the output object file
 - [ ] add a `--dump-meta` option to the assembler which reads the metadata in a file and prints the `.mif`
+
+#### Linker
+
 - [ ] make sure linker works properly with version 3
-- [ ] compiler
-  - [ ] add a `pub` keyword to the language which can be used with functions
-  - [ ] add `use` keyword for importing libraries
-  - [ ] imports are handled by finding the correct object files and scanning the metadata, and adding the functions to the symbol table
-  - [ ] lack of `main` function is ignored when the compiler is run with the `--lib` flag. compiler also generates a `.mif` interface file along with the assembly.
+
+#### Compiler
+
+- [ ] add a `pub` keyword to the language which can be used with functions
+- [ ] add `use` keyword for importing libraries
+- [ ] imports are handled by finding the correct object files and scanning the metadata, and adding the functions to the symbol table
+- [ ] lack of `main` function is ignored when the compiler is run with the `--lib` flag. compiler also generates a `.mif` interface file along with the assembly.
+
+#### Builder
+
 - [ ] `mgbuild` utility that unifies everything into an easy pipeline and makes sure the imports are also compiled
   - [ ] environment variables can be used to set paths for the compiler and builder to check for libraries
   - [ ] if source file is newer than the object file, recompile

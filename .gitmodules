@@ -4,8 +4,8 @@
 [submodule "compiler"]
 	path = compiler
 	url = https://github.com/mango-basket/mgcc
-[submodule "assembler"]
-	path = assembler
+[submodule "mgas"]
+	path = mgas
 	url = https://github.com/mango-basket/mgas
 [submodule "linker"]
 	path = linker
